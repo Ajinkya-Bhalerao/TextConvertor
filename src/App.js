@@ -1,4 +1,5 @@
 import "./App.css";
+import About from "./components/About";
 import NavigationBar from "./components/NavigationBar.js";
 import TextForm from "./components/TextForm";
 function App() {
@@ -7,6 +8,9 @@ function App() {
       <NavigationBar title="TextConvertor" />
       <br></br>
       <TextForm heading="Enter Text Below To Convert" />
+      <br></br>
+      <hr></hr>
+      <About />
     </>
   );
 }
