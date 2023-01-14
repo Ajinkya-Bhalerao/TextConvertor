@@ -27,10 +27,18 @@ export default function TextForm(props) {
           />
         </Form.Group>
       </Form>
-      <button className="btn btn-primary" onClick={handleUpClick} style={{marginRight:"5px"}}>
+      <button
+        className="btn btn-primary"
+        onClick={handleUpClick}
+        style={{ marginRight: "5px" }}
+      >
         Convert To UpperCase
       </button>
-      <button className="btn btn-primary" onClick={handleLowerClick} style={{marginLeft:"5px"}}>
+      <button
+        className="btn btn-primary"
+        onClick={handleLowerClick}
+        style={{ marginLeft: "5px" }}
+      >
         Convert To LowerCase
       </button>
     </div>

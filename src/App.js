@@ -1,15 +1,13 @@
 import "./App.css";
 import NavigationBar from "./components/NavigationBar.js";
-import TextForm
- from "./components/TextForm";
+import TextForm from "./components/TextForm";
 function App() {
   return (
     <>
-      <NavigationBar title="TextConvertor"/>
+      <NavigationBar title="TextConvertor" />
       <br></br>
-        <TextForm  heading="Enter Text Below To Change it to UpperCase"/>
+      <TextForm heading="Enter Text Below To Change it to UpperCase" />
     </>
   );
 }
-
 export default App;

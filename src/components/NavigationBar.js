@@ -38,7 +38,10 @@ export default function NavigationBar(props) {
 }
 
 // handling props efficiently this will help to identify error if props are not passed and to set the default values
-NavigationBar.propTypes = { title: PropTypes.string.isRequired, about: PropTypes.string.isRequired};
+NavigationBar.propTypes = {
+  title: PropTypes.string.isRequired,
+  about: PropTypes.string.isRequired,
+};
 
 // We have not passed About prop from APP.js therefor it will take default value of about=About and display.
 NavigationBar.defaultProps = { title: "Set Title", about: "About" };
