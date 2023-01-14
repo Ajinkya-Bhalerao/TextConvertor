@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
 export default function TextForm(props) {
   const [text, setText] = useState("");
+  const [spCnt, setSpCnt] = useState(0);
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
@@ -10,6 +11,14 @@ export default function TextForm(props) {
   const handleLowerClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+  };
+  const handleClearClick = () => {
+    setText("");
+    setSpCnt(0);
+  };
+  const handleSpClick = () => {
+    let specialChar = /[@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
+    setSpCnt(text.match(specialChar).length);
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -38,17 +47,32 @@ export default function TextForm(props) {
         <button
           className="btn btn-primary"
           onClick={handleLowerClick}
-          style={{ marginLeft: "5px" }}
+          style={{ marginLeft: "5px", marginRight: "5px" }}
         >
           Convert To LowerCase
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={handleClearClick}
+          style={{ marginLeft: "5px", marginRight: "5px"  }}
+        >
+          Clear
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={handleSpClick}
+          style={{ marginLeft: "5px" }}
+        >
+          Special Characters
         </button>
       </div>
       <div className="container my-3">
         <h3>Your Text Summary</h3>
-        <p>{text.split(" ").length} words and {text.length} Characters</p>
+        <p>{text.split(" ").length} words</p>
+        <p>{text.length} Characters</p>
+        <p>{spCnt} Special Characters</p>
         <h4>Preview</h4>
         <p>{text}</p>
-      
       </div>
     </>
   );
