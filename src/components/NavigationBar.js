@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -8,7 +7,7 @@ import PropTypes from "prop-types";
 export default function NavigationBar(props) {
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg={props.mode[0]} variant={props.mode[0]} expand="lg">
         <Container fluid>
           <Navbar.Brand href="/">{props.title}</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -21,7 +20,7 @@ export default function NavigationBar(props) {
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/">{props.about}</Nav.Link>
             </Nav>
-            <Form className="d-flex">
+            {/* <Form className="d-flex">
               <Form.Control
                 type="search"
                 placeholder="Search"
@@ -29,6 +28,15 @@ export default function NavigationBar(props) {
                 aria-label="Search"
               />
               <Button variant="outline-success">Search</Button>
+            </Form> */}
+            <Form className="d-flex">
+              <Form.Check
+                type="switch"
+                id="custom-switch"
+                label={`${props.mode[1]} Dark Mode`}
+                onClick={props.toggleMode}
+                style={{color:props.mode[2]}}
+              />
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -41,7 +49,12 @@ export default function NavigationBar(props) {
 NavigationBar.propTypes = {
   title: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
+  mode: PropTypes.array.isRequired,
 };
 
 // We have not passed About prop from APP.js therefor it will take default value of about=About and display.
-NavigationBar.defaultProps = { title: "Set Title", about: "About" };
+NavigationBar.defaultProps = {
+  title: "Set Title",
+  about: "About",
+  mode: ["light", "Enable","black"],
+};

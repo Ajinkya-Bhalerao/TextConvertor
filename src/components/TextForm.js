@@ -26,57 +26,78 @@ export default function TextForm(props) {
   return (
     <>
       <div className="container my-3">
-        <h2>{props.heading}</h2>
+        <h2 style={{ color: props.mode[2] }}>{props.heading}</h2>
         <Form>
           <Form.Group className="my-3" controlId="exampleForm.ControlTextarea1">
             <Form.Control
               as="textarea"
               value={text}
+              style={{
+                backgroundColor:
+                  props.mode[0] === "light" ? "white" : "#0e101acf",
+                color: props.mode[0] === "light" ? "black" : "white",
+              }}
               onChange={handleOnChange}
               rows={10}
             />
           </Form.Group>
         </Form>
         <button
-          className="btn btn-primary"
+          className={`btn btn-${
+            props.mode[0] === "light" ? "primary" : "dark"
+          }`}
           onClick={handleUpClick}
           style={{ marginRight: "5px" }}
         >
           Convert To UpperCase
         </button>
         <button
-          className="btn btn-primary"
+          className={`btn btn-${
+            props.mode[0] === "light" ? "primary" : "dark"
+          }`}
           onClick={handleLowerClick}
           style={{ marginLeft: "5px", marginRight: "5px" }}
         >
           Convert To LowerCase
         </button>
         <button
-          className="btn btn-primary"
+          className={`btn btn-${
+            props.mode[0] === "light" ? "primary" : "dark"
+          }`}
           onClick={handleClearClick}
-          style={{ marginLeft: "5px", marginRight: "5px"  }}
+          style={{ marginLeft: "5px", marginRight: "5px" }}
         >
           Clear
         </button>
         <button
-          className="btn btn-primary"
+          className={`btn btn-${
+            props.mode[0] === "light" ? "primary" : "dark"
+          }`}
           onClick={handleSpClick}
           style={{ marginLeft: "5px" }}
         >
           Special Characters
         </button>
       </div>
-      <div className="container my-3">
+      <div className="container my-3" style={{ color: props.mode[2] }}>
+        <hr style={{borderWidth:'3px'}}/>
         <h3>Your Text Summary</h3>
         <p>{text.split(" ").length} words</p>
         <p>{text.length} Characters</p>
         <p>{spCnt} Special Characters</p>
+        <hr style={{borderWidth:'3px'}}/>
         <h4>Preview</h4>
-        <p>{text}</p>
+        <p>{text.length>0?text:"Enter in above textbox to preview"}</p>
       </div>
     </>
   );
 }
 
-TextForm.propTypes = { heading: PropTypes.string.isRequired };
-TextForm.defaultProps = { heading: "Enter Text Below" };
+TextForm.propTypes = {
+  heading: PropTypes.string.isRequired,
+  mode: PropTypes.array.isRequired,
+};
+TextForm.defaultProps = {
+  heading: "Enter Text Below",
+  mode: ["light", "Enable", "black"],
+};
