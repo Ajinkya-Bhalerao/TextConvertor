@@ -7,9 +7,7 @@ function App() {
     <>
       <NavigationBar title="TextConvertor"/>
       <br></br>
-      <div className="container">
         <TextForm  heading="Enter Text Below To Change it to UpperCase"/>
-      </div>
     </>
   );
 }
