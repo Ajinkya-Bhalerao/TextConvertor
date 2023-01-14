@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 export default function TextForm(props) {
   const [text, setText] = useState("");
@@ -10,30 +10,45 @@ export default function TextForm(props) {
   const handleUpClick = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    text.length === 0
+      ? props.showAlert("Enter text To convert", "danger")
+      : props.showAlert("Converted to Upper Case", "success");
   };
   const handleLowerClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    text.length === 0? props.showAlert("Enter text To convert", "danger"):
+    props.showAlert("Converted to Lower Case", "success");
   };
   const handleClearClick = () => {
     setText("");
     setSpCnt(0);
+    text.length === 0
+      ? props.showAlert("Nothing to Clear", "danger")
+      : props.showAlert("Text Cleared", "success");
   };
   const handleCopyClick = () => {
-    // console.log("copy called");
     if (text.length === 0) {
-      return toast.error("Enter Text to be copied", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 2000,
-      })
+      props.showAlert("Enter Text to be Copied", "danger");
+    } else {
+      navigator.clipboard.writeText(text);
+      props.showAlert("Text Copied", "success");
     }
-    else{
-        navigator.clipboard.writeText(text)
-        return toast.success("Text Copied", {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-        });
-    }
+
+    //******************* Code For Toast *******************
+    // if (text.length === 0) {
+    //   return toast.error("Enter Text to be copied", {
+    //     position: toast.POSITION.TOP_CENTER,
+    //     autoClose: 2000,
+    //   })
+    // }
+    // else{
+    //     navigator.clipboard.writeText(text)
+    //     return toast.success("Text Copied", {
+    //       position: toast.POSITION.TOP_CENTER,
+    //       autoClose: 2000,
+    //     });
+    // }
   };
   const handleSpClick = () => {
     let specialChar = /[@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
@@ -97,13 +112,14 @@ export default function TextForm(props) {
         >
           Copy
         </button>
-        <ToastContainer />
+        {/* Code for Toast */}
+        {/* <ToastContainer /> */}
         <button
           className={`btn btn-${
             props.mode[0] === "light" ? "primary" : "dark"
           }`}
           onClick={handleSpClick}
-          style={{ marginTop: "10px" }}
+          style={{ marginLeft: "5px" }}
         >
           Special Characters
         </button>
