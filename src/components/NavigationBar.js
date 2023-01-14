@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 export default function NavigationBar(props) {
   return (
     <>
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand href="/">{props.title}</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
