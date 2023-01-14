@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function TextForm(props) {
   const [text, setText] = useState("");
   const [spCnt, setSpCnt] = useState(0);
@@ -16,9 +19,25 @@ export default function TextForm(props) {
     setText("");
     setSpCnt(0);
   };
+  const handleCopyClick = () => {
+    // console.log("copy called");
+    if (text.length === 0) {
+      return toast.error("Enter Text to be copied", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+      })
+    }
+    else{
+        navigator.clipboard.writeText(text)
+        return toast.success("Text Copied", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000,
+        });
+    }
+  };
   const handleSpClick = () => {
     let specialChar = /[@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
-    setSpCnt(text.match(specialChar).length);
+    text.length === 0 ? setSpCnt(0) : setSpCnt(text.match(specialChar).length);
   };
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -38,7 +57,7 @@ export default function TextForm(props) {
                 color: props.mode[0] === "light" ? "black" : "white",
               }}
               onChange={handleOnChange}
-              rows={10}
+              rows={8}
             />
           </Form.Group>
         </Form>
@@ -73,21 +92,31 @@ export default function TextForm(props) {
           className={`btn btn-${
             props.mode[0] === "light" ? "primary" : "dark"
           }`}
+          onClick={handleCopyClick}
+          style={{ marginLeft: "5px", marginRight: "5px" }}
+        >
+          Copy
+        </button>
+        <ToastContainer />
+        <button
+          className={`btn btn-${
+            props.mode[0] === "light" ? "primary" : "dark"
+          }`}
           onClick={handleSpClick}
-          style={{ marginLeft: "5px" }}
+          style={{ marginTop: "10px" }}
         >
           Special Characters
         </button>
       </div>
       <div className="container my-3" style={{ color: props.mode[2] }}>
-        <hr style={{borderWidth:'3px'}}/>
+        <hr style={{ borderWidth: "3px" }} />
         <h3>Your Text Summary</h3>
         <p>{text.split(" ").length} words</p>
         <p>{text.length} Characters</p>
         <p>{spCnt} Special Characters</p>
-        <hr style={{borderWidth:'3px'}}/>
+        <hr style={{ borderWidth: "3px" }} />
         <h4>Preview</h4>
-        <p>{text.length>0?text:"Enter in above textbox to preview"}</p>
+        <p>{text.length > 0 ? text : "Enter in above textbox to preview"}</p>
       </div>
     </>
   );
