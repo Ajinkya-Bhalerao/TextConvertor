@@ -4,12 +4,13 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import PropTypes from "prop-types";
+// import { Link } from "react-router-dom";
 export default function NavigationBar(props) {
   return (
     <>
       <Navbar bg={props.mode[0]} variant={props.mode[0]} expand="lg">
         <Container fluid>
-          <Navbar.Brand href="/">{props.title}</Navbar.Brand>
+          <Navbar.Brand>{props.title}</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -17,8 +18,12 @@ export default function NavigationBar(props) {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/">{props.about}</Nav.Link>
+              <Nav.Link>Home
+                {/* <Link to="/">Home</Link> */}
+              </Nav.Link>
+              <Nav.Link> {props.about}
+                {/* <Link to="/about">{props.about}</Link> */}
+              </Nav.Link>
             </Nav>
             {/* <Form className="d-flex">
               <Form.Control
@@ -35,7 +40,7 @@ export default function NavigationBar(props) {
                 id="custom-switch"
                 label={`${props.mode[1]} Dark Mode`}
                 onClick={props.toggleMode}
-                style={{color:props.mode[2]}}
+                style={{ color: props.mode[2] }}
               />
             </Form>
           </Navbar.Collapse>
@@ -56,5 +61,5 @@ NavigationBar.propTypes = {
 NavigationBar.defaultProps = {
   title: "Set Title",
   about: "About",
-  mode: ["light", "Enable","black"],
+  mode: ["light", "Enable", "black"],
 };
