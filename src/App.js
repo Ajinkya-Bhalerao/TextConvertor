@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import About from "./components/About";
 import Alert from "./components/DisplayAlert";
 // import About from "./components/About";
 import NavigationBar from "./components/NavigationBar.js";
@@ -45,6 +46,8 @@ function App() {
                 toggleMode={toggleMode}
                 showAlert={showAlert}
               />
+        <hr></hr>
+        <About></About>
         {/* <Routes>
           <Route
             exact
