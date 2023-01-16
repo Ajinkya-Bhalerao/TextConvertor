@@ -34,21 +34,21 @@ function App() {
   return (
     <>
       {/* <Router> */}
-        <NavigationBar
-          title="TextConvertor"
-          mode={mode}
-          toggleMode={toggleMode}
-        />
-        <Alert alert={alert} />
-        <TextForm
-                heading="Enter Text Below To Convert"
-                mode={mode}
-                toggleMode={toggleMode}
-                showAlert={showAlert}
-              />
-        <hr></hr>
-        <About></About>
-        {/* <Routes>
+      <NavigationBar
+        title="TextConvertor"
+        mode={mode}
+        toggleMode={toggleMode}
+      />
+      <Alert alert={alert} />
+      <TextForm
+        heading="Enter Text Below To Convert"
+        mode={mode}
+        toggleMode={toggleMode}
+        showAlert={showAlert}
+      />
+      <hr></hr>
+      <About mode={mode} toggleMode={toggleMode}></About>
+      {/* <Routes>
           <Route
             exact
             path="/"

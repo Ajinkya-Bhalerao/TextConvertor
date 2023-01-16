@@ -79,17 +79,19 @@ export default function TextForm(props) {
         <button
           className={`btn btn-${
             props.mode[0] === "light" ? "primary" : "dark"
-          }`}
+          } my-1`}
           onClick={handleUpClick}
           style={{ marginRight: "5px" }}
+          disabled={text.length===0}
         >
           Convert To UpperCase
         </button>
         <button
           className={`btn btn-${
             props.mode[0] === "light" ? "primary" : "dark"
-          }`}
+          } my-1`}
           onClick={handleLowerClick}
+          disabled={text.length===0}
           style={{ marginLeft: "5px", marginRight: "5px" }}
         >
           Convert To LowerCase
@@ -97,8 +99,9 @@ export default function TextForm(props) {
         <button
           className={`btn btn-${
             props.mode[0] === "light" ? "primary" : "dark"
-          }`}
+          } my-1`}
           onClick={handleClearClick}
+          disabled={text.length===0}
           style={{ marginLeft: "5px", marginRight: "5px" }}
         >
           Clear
@@ -106,8 +109,9 @@ export default function TextForm(props) {
         <button
           className={`btn btn-${
             props.mode[0] === "light" ? "primary" : "dark"
-          }`}
+          } my-1`}
           onClick={handleCopyClick}
+          disabled={text.length===0}
           style={{ marginLeft: "5px", marginRight: "5px" }}
         >
           Copy
@@ -117,8 +121,9 @@ export default function TextForm(props) {
         <button
           className={`btn btn-${
             props.mode[0] === "light" ? "primary" : "dark"
-          }`}
+          } my-1`}
           onClick={handleSpClick}
+          disabled={text.length===0}
           style={{ marginLeft: "5px" }}
         >
           Special Characters
@@ -127,7 +132,7 @@ export default function TextForm(props) {
       <div className="container my-3" style={{ color: props.mode[2] }}>
         <hr style={{ borderWidth: "3px" }} />
         <h3>Your Text Summary</h3>
-        <p>{text.split(" ").length} words</p>
+        <p>{text.split(" ").filter((e)=> e.length!==0).length} words</p>
         <p>{text.length} Characters</p>
         <p>{spCnt} Special Characters</p>
         <hr style={{ borderWidth: "3px" }} />
